@@ -30,8 +30,7 @@ steps:
     tags: |
       latest
 
-- task: CmdLine@2
-  inputs:
-    script: 'docker run -d -p 4200:4200 angularapp:latest'
+- script: |
+   docker run -p 4200:4200 -d angularapp:latest
 
 

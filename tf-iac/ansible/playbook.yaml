@@ -39,4 +39,12 @@
         state: started
       when: docker_running.rc != 0
 
-
+    - name: Add current user to Docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+      when: ansible_user != "root"
+    
+    - name : Refresh group
+      shell: newgrp docker

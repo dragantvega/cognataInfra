@@ -11,7 +11,7 @@ variable "project" {
 }
 
 variable "location" {
-  default     = "westeurope"
+  default     = "uksouth"
   type        = string
   description = "Name of the region"
 }

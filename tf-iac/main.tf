@@ -43,6 +43,24 @@ resource "azurerm_public_ip" "publicip" {
   allocation_method   = "Static"
 }
 
+# resource "azurerm_network_security_group" "cognata_nsg" {
+#   name                = "cognata-nsg"
+#   location            = var.location
+#   resource_group_name = var.resource_group
+
+#   security_rule {
+#     name                       = "allow-ssh"
+#     priority                   = 100
+#     direction                  = "Inbound"
+#     access                     = "Allow"
+#     protocol                   = "Tcp"
+#     source_port_range          = "*"
+#     destination_port_range     = "22"
+#     source_address_prefix      = "*"
+#     destination_address_prefix = "*"
+#   }
+# }
+
 # Create a network interface
 resource "azurerm_network_interface" "nic" {
   name                = "${var.project}-network-interface"
@@ -54,7 +72,7 @@ resource "azurerm_network_interface" "nic" {
     subnet_id                     = azurerm_subnet.subnet.id
     public_ip_address_id          = azurerm_public_ip.publicip.id
     private_ip_address_allocation = "Dynamic"
-  }
+   }
 }
 
 # Create a virtual machine
@@ -64,11 +82,13 @@ resource "azurerm_virtual_machine" "vm" {
   resource_group_name   = var.resource_group
   network_interface_ids = [azurerm_network_interface.nic.id]
   vm_size               = "Standard_DS1_v2"
+  delete_os_disk_on_termination = true
+
 
   storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
@@ -96,7 +116,25 @@ resource "azurerm_virtual_machine" "vm" {
   }
   provisioner "file" {
     source      = "./ansible/install.sh"
-    destination = "/home/ubuntu/install.sh"
+    destination = "/home/adminuser/install.sh"
+  }
+  provisioner "file" {
+    source      = "./ansible/playbook.yaml"
+    destination = "/home/adminuser/playbook.yaml"
+  }
+  provisioner "file" {
+    source = "azure_agent.sh"
+    destination = "/home/adminuser/azure_agent.sh"
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/adminuser/install.sh",
+      "chmod +x /home/adminuser/azure_agent.sh",
+      "/home/adminuser/install.sh", 
+      "ansible-playbook -c local playbook.yaml",
+      "/home/adminuser/azure_agent.sh"
+    ]
+    
   }
 
 }

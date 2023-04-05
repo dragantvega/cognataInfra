@@ -28,4 +28,13 @@ steps:
     Dockerfile: '**/Dockerfile'
     tags: |
       latest
+- task: Docker@2
+  displayName: Run Docker container
+  inputs:
+    repository: 'angularapp' # Replace with the name of your Docker image
+    command: 'start'
+    arguments: '-d -p 4200:4200' # Replace with the arguments you want to pass to the `docker run` command
+    tags: |
+      latest
+
 

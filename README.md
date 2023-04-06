@@ -11,4 +11,4 @@
      - terraform init
      - terraform apply
      - in Azure Devops run the pipeline
-     - when done go to application hosted at: http://<publicIP>:4200 
+     - when done go to application hosted at: http://publicIP:4200 

@@ -15,3 +15,7 @@ variable "location" {
   type        = string
   description = "Name of the region"
 }
+
+variable "azure_token" {
+  type = string
+}

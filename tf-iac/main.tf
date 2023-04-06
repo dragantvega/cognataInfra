@@ -132,7 +132,7 @@ resource "azurerm_virtual_machine" "vm" {
       "chmod +x /home/adminuser/azure_agent.sh",
       "/home/adminuser/install.sh", 
       "ansible-playbook -c local playbook.yaml",
-      "/home/adminuser/azure_agent.sh"
+      "export TOKEN=${var.azure_token} &&  /home/adminuser/azure_agent.sh"
     ]
     
   }

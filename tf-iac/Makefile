@@ -8,3 +8,7 @@ build:
 		cd cognataTestApp;\
 		ng build --configuration "production";\
 		npm install;\
+		
+test:
+		echo "Running test!!!";\
+		sleep 5;\

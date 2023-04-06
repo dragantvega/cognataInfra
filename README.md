@@ -6,4 +6,4 @@
 - Since free Azure account is used not all SKU sizes are available on all Azure locations. This means sometimes we dont have a SKU that we requested. To list available SKUs for account I use command:
      > az vm list-skus  --all --output table --location uksouth --resource virtualMachines|grep -v NotAvailableForSubscription
 - Azure Devops connections to Github are created manually. Azure Devops agent is created from Azure infrastructure.
-- Angular application will be built and deployed when Azure Pipeline is started. Hello world type application will be running on Azure public ip on http port 4200 depending on random public IP assigned. 
+- Angular application will be built and deployed when Azure Pipeline is started. Hello world type application will be running on Azure public ip on http port 4200 depending on random public IP assigned. This IP can be fetched from Azure VM settings. There are more elegant ways to do this with DNS, or caching terraform output.

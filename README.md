@@ -7,3 +7,8 @@
      > az vm list-skus  --all --output table --location uksouth --resource virtualMachines|grep -v NotAvailableForSubscription
 - Azure Devops connections to Github are created manually. Azure Devops agent is created from Azure infrastructure.
 - Angular application will be built and deployed when Azure Pipeline is started. Hello world type application will be running on Azure public ip on http port 4200 depending on random public IP assigned. This IP can be fetched from Azure VM settings. There are more elegant ways to do this with DNS, or caching terraform output.
+- How to start(if terraform state bucket is already created):
+     - terraform init
+     - terraform apply
+     - in Azure Devops run the pipeline
+     - when done go to application hosted at: http://<publicIP>:4200 

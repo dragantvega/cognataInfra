@@ -1,5 +1,5 @@
 variable "resource_group" {
-  default     = "cognata-1"
+  default     = "cognata-test"
   type        = string
   description = "Name of the resource group"
 }

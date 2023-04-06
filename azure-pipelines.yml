@@ -31,6 +31,7 @@ steps:
       latest
 
 - script: |
-   docker run -p 4200:4200 -d angularapp:latest
+   docker rm -f angular
+   docker run --name angular -p 4200:4200 -d angularapp:latest
 
 

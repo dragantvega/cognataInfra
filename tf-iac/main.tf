@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "cognata-1"
-    storage_account_name = "cognatastorage1"
+    resource_group_name  = "cognata-test"
+    storage_account_name = "cognatastoragetest"
     container_name       = "cognata-state"
     key                  = "cognata.tfstate"
   }
@@ -81,7 +81,7 @@ resource "azurerm_virtual_machine" "vm" {
   location              = var.location
   resource_group_name   = var.resource_group
   network_interface_ids = [azurerm_network_interface.nic.id]
-  vm_size               = "Standard_DS1_v2"
+  vm_size               = "Standard_A2_v2"
   delete_os_disk_on_termination = true
 
 

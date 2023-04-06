@@ -9,4 +9,4 @@ wget https://vstsagentpackage.azureedge.net/agent/3.218.0/vsts-agent-linux-x64-3
 mkdir $AGENT_PATH
 cd $AGENT_PATH
 tar xvfz ../vsts-agent-linux-x64-3.218.0.tar.gz
-./config.sh --unattended --url https://dev.azure.com/dragantomasevic0768 --auth pat --token $TOKEN --pool default --agent myLinuxAgent_$DATE --acceptTeeEula
+./config.sh --unattended --url https://dev.azure.com/dragantomasevic0768 --auth pat --token $TOKEN --pool default --agent myLinuxAgent_$DATE --acceptTeeEula && sleep 10 && run.sh&

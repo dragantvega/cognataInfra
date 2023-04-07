@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  node:
+    image: nodeapp:latest
+    ports:
+      - "3000:3000"
+    restart: always
+
+  angular:
+    image: angularapp:latest
+    ports:
+      - "4200:4200"
+    restart: always

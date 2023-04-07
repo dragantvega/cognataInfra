@@ -1,10 +1,12 @@
 ---
-- name: Install and start Docker
+- name: Install and start Docker and Docker Compose
   hosts: localhost
   become: true
   vars:
     docker_apt_key_url: https://download.docker.com/linux/ubuntu/gpg
     docker_apt_repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    docker_compose_url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64"
+    docker_compose_path: /usr/local/bin/docker-compose
   tasks:
     - name: Add Docker APT key
       apt_key:
@@ -45,6 +47,20 @@
         groups: docker
         append: yes
       when: ansible_user != "root"
-    
-    - name : Refresh group
-      shell: newgrp docker
+
+    - name: Install Docker Compose
+      get_url:
+        url: "{{ docker_compose_url }}"
+        dest: "{{ docker_compose_path }}"
+        mode: 'u+x'
+
+    - name: Set executable permissions for current user
+      file:
+        path: "{{ docker_compose_path }}"
+        mode: "0755"
+      when: ansible_user != "root"
+
+    - name: Verify Docker Compose installation
+      shell: docker-compose --version
+      register: docker_compose_version
+      failed_when: docker_compose_version.rc != 0

@@ -38,7 +38,7 @@ steps:
 #       latest
 
 - script: |
-   ls -ltr
+   cd cognatainfra
    docker-compose down
    docker-compose up -d
 

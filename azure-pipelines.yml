@@ -1,9 +1,9 @@
 resources:
   repositories:
-  - repository: MyGitHubRepo # The name used to reference this repository in the checkout step
+  - repository: app-repo # The name used to reference this repository in the checkout step
     type: github
-    endpoint: MyGitHubServiceConnection
-    name: MyGitHubOrgOrUser/MyGitHubRepo
+    endpoint: dragantvega
+    name: dragantvega/cognatatestapp
 
 trigger:
 - main

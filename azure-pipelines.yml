@@ -1,6 +1,6 @@
 resources:
   repositories:
-  - repository: app-repo # The name used to reference this repository in the checkout step
+  - repository: node-repo # The name used to reference this repository in the checkout step
     type: github
     endpoint: dragantvega
     name: dragantvega/cognatatestapp
@@ -15,13 +15,15 @@ pool:
    name: Default
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- checkout: node-repo
+- script: |
+    echo "Now in node application repo"
+    cd nodeapp && docker build -t nodeapp:latest  -f Dockerfile.node . 
 
 - task: Docker@2
   displayName: Build Docker image

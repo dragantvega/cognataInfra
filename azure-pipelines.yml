@@ -25,6 +25,8 @@ steps:
     echo "Now in node application repo"
     cd nodeapp && docker build -t nodeapp:latest  -f Dockerfile.node . 
 
+- checkout: self
+
 - task: Docker@2
   displayName: Build Docker image
   inputs:

@@ -28,14 +28,14 @@ steps:
 
 - checkout: self
 
-# - task: Docker@2
-#   displayName: Build Docker image
-#   inputs:
-#     repository: 'angularapp' # Replace with the name of your Docker image
-#     command: 'build'
-#     Dockerfile: '**/Dockerfile'
-#     tags: |
-#       latest
+- task: Docker@2
+  displayName: Build Docker image
+  inputs:
+    repository: 'angularapp' # Replace with the name of your Docker image
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      latest
 
 - script: |
    cd cognataInfra && docker-compose down && docker-compose up -d

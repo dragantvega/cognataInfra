@@ -21,9 +21,10 @@ steps:
   displayName: 'Run a multi-line script'
 
 - checkout: node-repo
+
 - script: |
     echo "Now in node application repo"
-    docker build -t nodeapp:latest  -f nodeapp/Dockerfile.node nodeapp 
+    ls -ltr
 
 - checkout: self
 

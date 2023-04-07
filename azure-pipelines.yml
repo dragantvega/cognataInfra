@@ -24,7 +24,7 @@ steps:
 
 - script: |
     echo "Now in node application repo"
-    ls -ltr
+    cd cognatatestapp && docker build -t nodeapp:latest  -f nodeapp/Dockerfile.node nodeapp
 
 - checkout: self
 

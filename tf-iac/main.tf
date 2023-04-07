@@ -138,8 +138,7 @@ resource "azurerm_virtual_machine" "vm" {
   }
   provisioner "remote-exec" {
     inline = [
-      "export PUBLIC_IP=${azurerm_public_ip.publicip.ip_address}",
-      "cd myagent && sudo ./svc.sh install adminuser && sudo ./svc.sh start"
+      "export PUBLIC_IP=${azurerm_public_ip.publicip.ip_address} && cd myagent && sudo ./svc.sh install adminuser && sudo ./svc.sh start"
     ]
     
   }

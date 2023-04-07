@@ -23,7 +23,7 @@ steps:
 - checkout: node-repo
 - script: |
     echo "Now in node application repo"
-    cd nodeapp && docker build -t nodeapp:latest  -f Dockerfile.node . 
+    docker build -t nodeapp:latest  -f nodeapp/Dockerfile.node nodeapp 
 
 - checkout: self
 

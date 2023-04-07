@@ -37,7 +37,7 @@ steps:
       latest
 
 - script: |
-   docker rm -f angular
-   docker run --name angular -p 4200:4200 -d angularapp:latest
+   docker-compose down
+   docker-compose up -d
 
 

@@ -38,6 +38,6 @@ steps:
 #       latest
 
 - script: |
-   cd cognatainfra && docker-compose down && docker-compose up -d
+   cd cognataInfra && docker-compose down && docker-compose up -d
 
 

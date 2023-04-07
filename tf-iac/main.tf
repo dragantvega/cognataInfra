@@ -133,13 +133,13 @@ resource "azurerm_virtual_machine" "vm" {
       "/home/adminuser/install.sh", 
       "ansible-playbook -c local playbook.yaml",
       "export TOKEN=${var.azure_token} &&  /home/adminuser/azure_agent.sh",
-      "sleep 10"
     ]
     
   }
   provisioner "remote-exec" {
     inline = [
-      "/home/adminuser/myagent/run.sh &"
+      "export PUBLIC_IP=${azurerm_public_ip.publicip.ip_address}",
+      "cd myagent && sudo ./svc.sh install adminuser && sudo ./svc.sh start"
     ]
     
   }
